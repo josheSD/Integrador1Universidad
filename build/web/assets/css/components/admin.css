@@ -1,0 +1,16 @@
+
+.bg-yellow{
+    background-color:#FFFDEE !important;
+}
+
+.bg-blue{
+    background-color:#DDEBF6 !important;
+}
+
+.bg-white{
+    background-color:#FFFFFF !important;
+}
+
+.l-dashboard.boleta{
+    height: calc(100vh - (48px));
+}

@@ -1,0 +1,11 @@
+.l-login__content .container{
+    width:100%;
+}
+
+.l-login__content .container .row{
+    margin-bottom:0px;
+}
+
+.l-login__content .aviso-regitro{
+    margin-left:15px;
+}
