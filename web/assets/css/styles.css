@@ -743,10 +743,12 @@ a {
 .modules__main, .modules__sub {
   position: relative;
 }
-.modules__main a, .modules__sub a {
+.modules__main a, .modules__sub a,
+.modules__main button, .modules__sub button{
   display: flex;
 }
-.modules__main a span:nth-child(1), .modules__sub a span:nth-child(1) {
+.modules__main a span:nth-child(1), .modules__sub a span:nth-child(1),
+.modules__main button span:nth-child(1), .modules__sub button span:nth-child(1){
   display: inline-block;
   width: 47px;
   height: 48px;
@@ -754,38 +756,46 @@ a {
   justify-content: center;
   align-items: center;
 }
-.modules__main a span:nth-child(1) img, .modules__sub a span:nth-child(1) img {
+.modules__main a span:nth-child(1) img, .modules__sub a span:nth-child(1) img,
+.modules__main button span:nth-child(1) img, .modules__sub button span:nth-child(1) img{
   width: 24px;
 }
 @media screen and (min-width: 550px) {
-  .modules__main a span:nth-child(1) img, .modules__sub a span:nth-child(1) img {
+  .modules__main a span:nth-child(1) img, .modules__sub a span:nth-child(1) img,
+  .modules__main button span:nth-child(1) img, .modules__sub button span:nth-child(1) img{
     width: 30px;
   }
 }
-.modules__main a span:nth-child(2), .modules__sub a span:nth-child(2) {
+.modules__main a span:nth-child(2), .modules__sub a span:nth-child(2),
+.modules__main button span:nth-child(2), .modules__sub button span:nth-child(2){
   display: flex;
   align-items: center;
   flex-grow: 1;
   transition: margin-left 0.5s linear, opacity 0.5s linear, visibility 0.5s linear;
 }
-.theme-light .modules__main a span:nth-child(2), .theme-light .modules__sub a span:nth-child(2) {
+.theme-light .modules__main a span:nth-child(2), .theme-light .modules__sub a span:nth-child(2),
+.theme-light .modules__main button span:nth-child(2), .theme-light .modules__sub button span:nth-child(2){
   color: #171717;
 }
-.theme-dark .modules__main a span:nth-child(2), .theme-dark .modules__sub a span:nth-child(2) {
+.theme-dark .modules__main a span:nth-child(2), .theme-dark .modules__sub a span:nth-child(2),
+.theme-dark .modules__main button span:nth-child(2), .theme-dark .modules__sub button span:nth-child(2){
   color: #F5F5F5;
 }
-.modules__main a span:nth-child(2).expanded, .modules__sub a span:nth-child(2).expanded {
+.modules__main a span:nth-child(2).expanded, .modules__sub a span:nth-child(2).expanded,
+.modules__main button span:nth-child(2).expanded, .modules__sub button span:nth-child(2).expanded{
   margin-left: -259px;
   opacity: 0;
   visibility: hidden;
 }
-.modules__main a span:nth-child(3), .modules__sub a span:nth-child(3) {
+.modules__main a span:nth-child(3), .modules__sub a span:nth-child(3),
+.modules__main button span:nth-child(3), .modules__sub button span:nth-child(3){
   width: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.modules__main a .caret, .modules__sub a .caret {
+.modules__main a .caret, .modules__sub a .caret,
+.modules__main button .caret, .modules__sub a .caret,{
   display: inline-block;
   width: 0;
   height: 0;

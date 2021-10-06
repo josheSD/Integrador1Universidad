@@ -5,10 +5,16 @@
  */
 package persistencia;
 
+import java.util.List;
+import negocio.Producto;
+
 /**
  *
  * @author Lance
  */
 public interface ProductoDao {
-    
+    public String grabar(Producto prod);
+    public String actualizar(Producto prod,int idProducto);
+    public String eliminar(int idProducto);
+    public List lista();
 }

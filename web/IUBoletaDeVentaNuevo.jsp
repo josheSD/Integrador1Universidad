@@ -1,5 +1,6 @@
 
 
+<%@page import="vista.UsuarioPresentador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,7 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sistema de Boleta de Venta Electrónica - Tick</title>
         <style>@import"./assets/css/styles.css";</style>
-        <style>@import"./assets/css/components/admin.css";</style>
+        <style>@import"./assets/css/components/admin.css"</style>
         <link rel="icon" type="image/x-icon" href="./assets/img/tick.png">
         <meta name="theme-color" content="#0078D7">
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
@@ -24,6 +25,7 @@
     <body class="theme-light" id="body">
         
         <main class="l-admin" id="admin">
+            <% UsuarioPresentador usuPre = (UsuarioPresentador) session.getAttribute("usuPre"); %>
             
             <!-- START NAVBAR -->
             <section class="l-navbar" id="navbar">
@@ -86,8 +88,9 @@
                     </aside>
 
                     <aside class="l-navbar-profile__info-user">
-                        <h2 class="mb-0"> José Ch. R. </h2>
-                        <p class="mb-0" > Vendedor </p>
+                        <% Object[]usuario = usuPre.getUsuario(); %>
+                        <h2 class="mb-0"> <%= usuario[1] %> </h2>
+                        <p class="mb-0" > <%= usuario[4] %> </p>
                         <p class="mb-0" > Ver Cuenta </p>
                     </aside>
 
@@ -134,36 +137,30 @@
                                 </div>
 
                             </section>
+                        
+                            <% for(int i=1;i<usuPre.getMenu().size();i++){ %>
+                            <% Object[] menu = (Object[])usuPre.getMenu().get(i); %>
 
-                            <section class="modules" id="module-proveedor" >
+                                <form method="POST" action="ProductoControl">
+                                    <section class="modules" >
 
-                                <div class="modules__main">
-                                    <a href="IUBoletaDeVenta.jsp">
-                                        <span>
-                                            <img src="./assets/img/sidebar/07-calculator.svg" alt="modulo">
-                                        </span>
-                                        <span class="module-parrafo">
-                                            Boleta de Venta
-                                        </span>
-                                    </a>
-                                </div>
+                                        <div class="modules__main">
 
-                            </section>
+                                            <button class="modules__button" type="submit"  name="acc" value="<%= menu[2] %>">
+                                                  <span>
+                                                       <img src="<%= menu[3] %>" alt="modulo">
+                                                  </span>
+                                                  <span class="module-parrafo">
+                                                       <%= menu[1] %>
+                                                  </span>
+                                            </button>
 
-                            <section class="modules" id="module-articulo" >
+                                        </div>
+                                    </section>
+                                </form>
 
-                                <div class="modules__main">
-                                    <a href="IUProducto.jsp">
-                                        <span>
-                                            <img src="./assets/img/sidebar/05-packing.svg" alt="modulo">
-                                        </span>
-                                        <span class="module-parrafo">
-                                            Productos
-                                        </span>
-                                    </a>
-                                </div>
+                            <% } %>
 
-                            </section>
                                                 
 
                     </article>

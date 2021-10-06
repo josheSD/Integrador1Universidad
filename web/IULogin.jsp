@@ -1,4 +1,5 @@
 
+<%@page import="vista.UsuarioPresentador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +21,9 @@
     </head>
     <body class="theme-light" id="body">
         
+                                
         <main class="l-auth">
+            
 
             <section class="l-auth__hero">
 
@@ -62,7 +65,7 @@
 
                     <section class="l-login__content">
 
-                        <form method="post" action="EmpleadoControl">
+                        <form method="post" action="UsuarioControl">
 
                             <div class="container">
                                 <div class="row">
@@ -81,16 +84,15 @@
                                 </div>
                             </div>
                             
-                            <!-- <input class="btn btn-primary" type="submit"  placeholder="Inicia sesión" name="acc" value="Iniciar Sesion" /> -->
-                            
-                            <a class="btn btn-primary" href="./IUAdmin.jsp" class="aviso-regitro">Iniciar Sesion</a>
+                            <input class="btn btn-primary" type="submit"  name="acc" value="Iniciar Sesion" /> 
                                 
                             <div class="mt-2 d-flex flex-column">
-                                <a class="btn btn-light" href="./IURegistrar.jsp" class="aviso-regitro">Regístrate </a>
+                                <input class="btn btn-light" type="submit"  name="acc" value="Registrate" /> 
                             </div>
                             
 
                         </form>
+                        
                         
                         
                     </section>

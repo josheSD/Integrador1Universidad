@@ -5,6 +5,7 @@
  */
 package persistencia;
 
+import java.util.List;
 import negocio.Usuario;
 
 /**
@@ -13,5 +14,6 @@ import negocio.Usuario;
  */
 public interface UsuarioDao {
     public String grabar(Usuario usu);
-    public Object[] iniciarSesion(String usu,String pass,int idTipoUsuario);
+    public Object[] iniciarSesion(String usu,String pass);
+    public List menu(int idTipoUsuario);
 }

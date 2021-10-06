@@ -14,11 +14,11 @@ import java.sql.DriverManager;
  */
 public class Conexion {
     public Connection getConexion(){
-        Connection  cn=null;
+        Connection cn = null;
         
         try{
-            Class.forName("org.apache.mysql.jdbc.ClientDriver");
-            cn=DriverManager.getConnection("jdbc:mysql://localhost:1527/bdboleta","root","");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            cn=DriverManager.getConnection("jdbc:mysql://localhost/bdboleta?user=root&password=");
         }catch(Exception ex){
             cn=null;
         }

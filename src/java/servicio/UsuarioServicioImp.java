@@ -5,6 +5,7 @@
  */
 package servicio;
 
+import java.util.List;
 import negocio.Usuario;
 import persistencia.UsuarioDao;
 import persistencia.UsuarioDaoImp;
@@ -31,12 +32,18 @@ public class UsuarioServicioImp implements UsuarioServicio{
     }
 
     @Override
-    public Object[] iniciarSesion(String usu, String pass, int idTipoUsuario) {
-        Object[] usuario = usuDao.iniciarSesion(usu, pass, idTipoUsuario);
+    public Object[] iniciarSesion(String usu, String pass) {
+        Object[] usuario = usuDao.iniciarSesion(usu, pass);
         if(usuario!=null){
             return usuario;
         }
         return null;
+    }
+
+    @Override
+    public List menu(int idTipoUsuario) {
+        List listaTipoUsuario = usuDao.menu(idTipoUsuario);
+        return listaTipoUsuario;
     }
     
 }

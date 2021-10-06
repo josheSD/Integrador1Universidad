@@ -12,5 +12,18 @@
 }
 
 .l-dashboard.boleta{
-    height: calc(100vh - (48px));
+    height: calc(100vh - 48px);
+}
+
+.modules__button{
+    border:none;
+    background: none;
+}
+
+.modules__button .module-parrafo{
+    margin-top:13px;
+}
+
+.modules__button .module-parrafo:hover{
+    text-decoration: underline;
 }

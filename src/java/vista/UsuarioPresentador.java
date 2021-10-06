@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,8 +13,13 @@ import java.util.List;
  * @author Lance
  */
 public class UsuarioPresentador {
-    private String msg;
-    private List listaTipoUsuario;
+    private String msg = "";
+    private Object[] usuario = {"","","","",""};
+    private List menu = new ArrayList();
+    private List listaTipoUsuario = new ArrayList();
+
+    public UsuarioPresentador() {
+    }
 
     public String getMsg() {
         return msg;
@@ -23,11 +29,27 @@ public class UsuarioPresentador {
         this.msg = msg;
     }
 
+    public Object[] getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Object[] usuario) {
+        this.usuario = usuario;
+    }
+
+    public List getMenu() {
+        return menu;
+    }
+
+    public void setMenu(List menu) {
+        this.menu = menu;
+    }
+
     public List getListaTipoUsuario() {
         return listaTipoUsuario;
     }
 
-    public void setListaTipoUsuario(List listaTipoUsuario) {
+    public void setListaTipoUsuario(List listaTipoUsuario){
         this.listaTipoUsuario = listaTipoUsuario;
     }
     

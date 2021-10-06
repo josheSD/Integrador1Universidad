@@ -1,4 +1,5 @@
 
+<%@page import="vista.UsuarioPresentador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
     <body class="theme-light" id="body">
         
         <main class="l-auth">
-
+            <% UsuarioPresentador usuPre = (UsuarioPresentador) session.getAttribute("usuPre"); %>
             <section class="l-auth__hero">
 
                 <article class="l-auth__hero-top"></article>
@@ -62,7 +63,7 @@
 
                     <section class="l-login__content">
 
-                        <form method="post" action="EmpleadoControl">
+                        <form method="post" action="UsuarioControl">
 
                             <div class="container">
                                 <div class="row">
@@ -81,9 +82,11 @@
                                     <div class="col-12 px-0">
                                         <div class="form-group">
                                           <label for="exampleFormControlSelect1">Seleccione el tipo de usuario</label>
-                                          <select class="form-control" id="exampleFormControlSelect1">
-                                            <option>Vendedor</option>
-                                            <option>Cajero</option>
+                                          <select class="form-control" name="idTipoUsuario" id="exampleFormControlSelect1">
+                                            <% for(int i=1;i<usuPre.getListaTipoUsuario().size();i++){ %>
+                                            <% Object[] tipo = (Object[])usuPre.getListaTipoUsuario().get(i); %>
+                                                <option value="<%= tipo[0] %>"> <%= tipo[1] %> </option>
+                                            <% } %>
                                           </select>
                                         </div>
                                     </div>
@@ -91,7 +94,7 @@
                                 </div>
                             </div>
                             
-                            <input class="btn btn-primary" type="submit"  placeholder="Inicia sesión" name="acc" value="Crear" />
+                            <input class="btn btn-primary" type="submit" name="acc" value="Crear" />
                             
                             <div class="mt-2 d-flex flex-column">
                                 <a class="btn btn-light" href="./IULogin.jsp" class="aviso-regitro">Volver </a>
@@ -100,6 +103,13 @@
 
                         </form>
                         
+                        <div class="row mt-4">
+                            <div class="col-12">
+                               <p class="small text-danger">
+                                    <%= usuPre.getMsg() %>
+                               </p>
+                            </div>
+                        </div>
                         
                     </section>
 

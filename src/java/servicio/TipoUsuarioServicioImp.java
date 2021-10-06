@@ -23,7 +23,7 @@ public class TipoUsuarioServicioImp implements TipoUsuarioServicio{
     
     @Override
     public List lista() {
-        List listaTipoUsuario = this.tipUsuDao.lista();
+        List listaTipoUsuario = tipUsuDao.lista();
         return listaTipoUsuario;
     }
     

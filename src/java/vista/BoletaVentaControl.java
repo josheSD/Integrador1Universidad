@@ -23,6 +23,19 @@ public class BoletaVentaControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String acc = request.getParameter("acc");
+        
+        if(acc.equals("Lista")){
+            this.lista(request,response);
+        }
+        
+    }
+    
+    private void lista(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        response.sendRedirect("IUProducto.jsp");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
