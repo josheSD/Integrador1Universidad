@@ -141,12 +141,12 @@
                             <% for(int i=1;i<usuPre.getMenu().size();i++){ %>
                             <% Object[] menu = (Object[])usuPre.getMenu().get(i); %>
 
-                                <form method="POST" action="ProductoControl">
+                                <form method="POST" action="<%= menu[2] %>">
                                     <section class="modules" >
 
                                         <div class="modules__main">
-
-                                            <button class="modules__button" type="submit"  name="acc" value="<%= menu[2] %>">
+                                            <input type="hidden" name="IdTipoUsuario" value="<%= usuario[3] %>">
+                                            <button class="modules__button" type="submit"  name="acc" value="Lista">
                                                   <span>
                                                        <img src="<%= menu[3] %>" alt="modulo">
                                                   </span>

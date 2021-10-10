@@ -1,5 +1,6 @@
 
 
+<%@page import="vista.BoletaVentaPresentador"%>
 <%@page import="vista.UsuarioPresentador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,6 +27,7 @@
         
         <main class="l-admin" id="admin">
             <% UsuarioPresentador usuPre = (UsuarioPresentador) session.getAttribute("usuPre"); %>
+            <% BoletaVentaPresentador boleVentPre = (BoletaVentaPresentador) session.getAttribute("boleVentPre"); %>
             
             <!-- START NAVBAR -->
             <section class="l-navbar" id="navbar">
@@ -141,12 +143,13 @@
                             <% for(int i=1;i<usuPre.getMenu().size();i++){ %>
                             <% Object[] menu = (Object[])usuPre.getMenu().get(i); %>
 
-                                <form method="POST" action="ProductoControl">
+                                <form method="POST" action="<%= menu[2] %>">
                                     <section class="modules" >
 
                                         <div class="modules__main">
+                                            <input type="hidden" name="IdTipoUsuario" value="<%= usuario[3] %>">
 
-                                            <button class="modules__button" type="submit"  name="acc" value="<%= menu[2] %>">
+                                            <button class="modules__button" type="submit"  name="acc" value="Lista">
                                                   <span>
                                                        <img src="<%= menu[3] %>" alt="modulo">
                                                   </span>
@@ -191,8 +194,11 @@
                                 <h4>
                                    Lista de Boleta de Venta 
                                 </h4>
-                                <!-- <button class="btn btn-primary my-3">Agregar</button> -->
-                                <a class="btn btn-primary my-3" href="./IUBoletaDeVentaNuevo.jsp" class="aviso-regitro">Agregar</a>
+                                <form method="post" action="BoletaVentaControl">
+                                    <button class="btn btn-primary my-3" type="submit" name="acc" value="AgregarBoletaVenta">
+                                        Agregar
+                                    </button>
+                                </form>
                             </div>
                             <div class="col-12 mt-3">
                                 <div class="table-responsive">
@@ -200,21 +206,48 @@
                                         <thead>
                                           <tr>
                                             <th scope="col">Acciones</th>
-                                            <th scope="col">Serie</th>
+                                            <th scope="col">Señor(a)</th>
                                             <th scope="col">Documento de Identidad</th>
-                                            <th scope="col">Propietario</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Total</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr>
-                                            <td>
-                                                <button class="btn btn-success">A</button>
-                                                <button class="btn btn-danger">E</button>
-                                            </td>
-                                            <td>00000504</td>
-                                            <td>85961980</td>
-                                            <td>Luis Rosales C.</td>
-                                          </tr>
+                                            
+                                            <% for(int i=1;i<boleVentPre.getListaBoletaVenta().size();i++){ %>
+                                            <% Object[] boletaVenta = (Object[])boleVentPre.getListaBoletaVenta().get(i); %>
+                                                <tr>
+                                                  <td>
+                                                      <form method="post" action="BoletaVentaControl">
+                                                        <input type="hidden" name="IdBoletaVenta" value="<%= boletaVenta[0] %>" />
+                                                        <input type="hidden" name="Senior" value="<%= boletaVenta[1] %>" />
+                                                        <input type="hidden" name="DocumentoIdentidad" value="<%= boletaVenta[2] %>" />
+                                                        <input type="hidden" name="Direccion" value="<%= boletaVenta[3] %>" />
+                                                        <input type="hidden" name="FechaEmision" value="<%= boletaVenta[4] %>" />
+                                                        <input type="hidden" name="Estado" value="<%= boletaVenta[5] %>" />
+                                                        <input type="hidden" name="Total" value="<%= boletaVenta[6] %>" />
+                                                        <input type="hidden" name="IdUsuario" value="<%= boletaVenta[7] %>" />
+                                                        
+                                                        <input type="hidden" name="IdTipoUsuarioTable" value="<%= usuario[3] %>">
+                                                        
+                                                        <button class="btn btn-success" type="submit" name="acc" value="ModificaBoletaVenta">
+                                                            <i class="fas fa-pencil-alt fa-xs"></i>
+                                                        </button>
+                                                        <button class="btn btn-danger" type="submit" name="acc" value="EliminarBoletaVenta">
+                                                            <i class="fas fa-trash fa-xs"></i>
+                                                        </button>
+                                                        <button class="btn btn-primary" type="submit" name="acc" value="AprobarBoletaVenta">
+                                                            <i class="fas fa-check-circle"></i>
+                                                        </button>
+                                                      </form>
+                                                  </td>
+                                                  <td><%= boletaVenta[1] %></td>
+                                                  <td><%= boletaVenta[2] %></td>
+                                                  <td><%= boletaVenta[4] %></td>
+                                                  <td class="text-right">S/. <%= boletaVenta[6] %></td>
+                                                </tr>
+                                            <% } %>
+                                          
                                         </tbody>
                                     </table>
                                 </div>

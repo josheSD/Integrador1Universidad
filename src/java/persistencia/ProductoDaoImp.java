@@ -37,5 +37,20 @@ public class ProductoDaoImp implements ProductoDao{
         String sql = "SELECT * FROM producto;";
         return Operacion.listar(sql);
     }
+
+    @Override
+    public Producto buscar(int idProducto) {
+        String sql = "SELECT * FROM producto WHERE IdProducto = "+idProducto+"";
+        Object[] prodDB = Operacion.buscar(sql);
+        Producto producto = new Producto();
+        if( prodDB != null ){
+            producto.setIdProducto(Integer.parseInt(prodDB[0].toString()));
+            producto.setNombre(prodDB[1].toString());
+            producto.setPrecioUnitario(Double.parseDouble(prodDB[2].toString()));
+            producto.setCantidad(Integer.parseInt(prodDB[3].toString()));
+            return producto;
+        }
+        return null;
+    }
     
 }

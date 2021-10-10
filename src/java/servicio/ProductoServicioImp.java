@@ -54,5 +54,11 @@ public class ProductoServicioImp implements ProductoServicio{
         List listaProducto = prodDao.lista();
         return listaProducto;
     }
+
+    @Override
+    public Producto buscar(int idProducto) {
+        Producto producto = prodDao.buscar(idProducto);
+        return producto;
+    }
     
 }

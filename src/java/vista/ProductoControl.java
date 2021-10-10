@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import negocio.Producto;
+import servicio.BoletaVentaServicio;
+import servicio.BoletaVentaServicioImp;
 import servicio.ProductoServicio;
 import servicio.ProductoServicioImp;
 
@@ -38,8 +40,8 @@ public class ProductoControl extends HttpServlet {
         
         String idProducto = request.getParameter("idProducto");
         
-        if(acc.equals("ListaProducto")){
-            this.listaProducto(request,response);
+        if(acc.equals("Lista")){
+            this.lista(request,response);
         }
         
         if(acc.equals("AgregarProducto")){
@@ -56,7 +58,7 @@ public class ProductoControl extends HttpServlet {
             
         }
         
-        if(acc.equals("ModificarProducto")){
+        if(acc.equals("ModificaProducto")){
             this.modificarProducto(request,response);
         }
         
@@ -64,17 +66,14 @@ public class ProductoControl extends HttpServlet {
             this.eliminarProducto(request,response);
         }
         
-        if(acc.equals("ListaBoleta")){
-            this.listaBoleta(request,response);
-        }
         
     }
     
-    private void listaProducto(HttpServletRequest request, HttpServletResponse response)
+    private void lista(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        prodPre.setListaProducto(prodSer.lista());
         prodPre.setMsg("");
+        prodPre.setListaProducto(prodSer.lista());
         request.getSession().setAttribute("prodPre", prodPre);
         response.sendRedirect("IUProducto.jsp");
         
@@ -84,8 +83,10 @@ public class ProductoControl extends HttpServlet {
             throws ServletException, IOException {
         
         prodPre.setTipoAccion("Crear");
-        Object[] prod = {"","","",""};
-        prodPre.setProducto(prod);
+        
+        Object[] prodObject = {"","","",""};
+        prodPre.setProducto(prodObject);
+        
         request.getSession().setAttribute("prodPre", prodPre);
         response.sendRedirect("IUProductoNuevo.jsp");
         
@@ -101,7 +102,11 @@ public class ProductoControl extends HttpServlet {
         Producto prod = new Producto(producto,precioUnitario,stock);
         prodPre.setMsg(prodSer.grabar(prod));
         
+        Object[] prodObject = {"","","",""};
+        prodPre.setProducto(prodObject);
+        
         prodPre.setListaProducto(prodSer.lista());
+        request.getSession().setAttribute("prodPre", prodPre);
         response.sendRedirect("IUProducto.jsp");
         
     }
@@ -123,6 +128,7 @@ public class ProductoControl extends HttpServlet {
         prodPre.setProducto(prod);
         prodPre.setTipoAccion("Actualizar");
         
+        request.getSession().setAttribute("prodPre", prodPre);
         response.sendRedirect("IUProductoNuevo.jsp");
         
     }
@@ -137,7 +143,12 @@ public class ProductoControl extends HttpServlet {
         
         Producto prod = new Producto(producto,precioUnitario,stock);
         prodPre.setMsg(prodSer.actualizar(prod, idProducto));
+        
+        Object[] prodObject = {"","","",""};
+        prodPre.setProducto(prodObject);
+        
         prodPre.setListaProducto(prodSer.lista());
+        request.getSession().setAttribute("prodPre", prodPre);
         response.sendRedirect("IUProducto.jsp");
         
     }
@@ -149,18 +160,14 @@ public class ProductoControl extends HttpServlet {
         
         prodPre.setMsg(prodSer.eliminar(IdProducto));
         
+        Object[] prodObject = {"","","",""};
+        prodPre.setProducto(prodObject);
+        
         prodPre.setListaProducto(prodSer.lista());
+        request.getSession().setAttribute("prodPre", prodPre);
         response.sendRedirect("IUProducto.jsp");
         
     }
-    
-    private void listaBoleta(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        response.sendRedirect("IUBoletaDeVenta.jsp");
-        
-    }
-    
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

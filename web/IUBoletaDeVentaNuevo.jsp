@@ -1,7 +1,11 @@
 
 
+<%@page import="vista.PedidoPresentador"%>
+<%@page import="vista.ProductoPresentador"%>
+<%@page import="vista.BoletaVentaPresentador"%>
 <%@page import="vista.UsuarioPresentador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,7 +30,11 @@
         
         <main class="l-admin" id="admin">
             <% UsuarioPresentador usuPre = (UsuarioPresentador) session.getAttribute("usuPre"); %>
-            
+            <% BoletaVentaPresentador boleVentPre = (BoletaVentaPresentador) session.getAttribute("boleVentPre"); %>
+            <% ProductoPresentador prodPre = (ProductoPresentador) session.getAttribute("prodPre"); %>
+            <% PedidoPresentador pediPre = (PedidoPresentador) session.getAttribute("pediPre"); %>
+            <%! String totalPedido = String.valueOf(0.00); %>
+                        
             <!-- START NAVBAR -->
             <section class="l-navbar" id="navbar">
                 <article class="l-navbar__icon">
@@ -141,12 +149,13 @@
                             <% for(int i=1;i<usuPre.getMenu().size();i++){ %>
                             <% Object[] menu = (Object[])usuPre.getMenu().get(i); %>
 
-                                <form method="POST" action="ProductoControl">
+                                <form method="POST" action="<%= menu[2] %>">
                                     <section class="modules" >
 
                                         <div class="modules__main">
+                                            <input type="hidden" name="IdTipoUsuario" value="<%= usuario[3] %>">
 
-                                            <button class="modules__button" type="submit"  name="acc" value="<%= menu[2] %>">
+                                            <button class="modules__button" type="submit"  name="acc" value="Lista">
                                                   <span>
                                                        <img src="<%= menu[3] %>" alt="modulo">
                                                   </span>
@@ -186,193 +195,228 @@
             <section class="l-main" id="main">
                 <main class="l-dashboard boleta overflow-auto">
 
-                    <div class="container-fluid">
-                        <div class="row mx-1">
-                            <div class="col-12 mt-3">
-                                <h4>
-                                   Insertar Boleta de Venta 
-                                </h4>
-                            </div>
-                            
-                            <div class="col-12 mt-3">
-                                
-                                <div class="card bg-yellow">
-                                    <div class="card-body py-3">
-                                        
-                                        <div class="row">
-                                            <div class="col-md-8 d-flex justify-content-center">
-                                                <section>
-                                                    <div class="d-flex">
-                                                        <h5 class="mb-0 text-center font-italic">Tienda de computo <h5><h5 class="mb-0 font-italic font-weight-bold">"TICK"</h5>
-                                                    </div>
-                                                    <p class="mb-0 text-center">De: Román Guzmán, Elta</p>
-                                                    <p class="mb-0 text-center">Av. San Antornio 680 - Lima</p>
-                                                    <p class="mb-0 text-center">Jr. Brasil 312 - Lima</p>
-                                                </section>
-                                            </div>
-                                            <div class="col-md-4 d-flex align-items-center justify-content-end">
-                                                <section>
-                                                    <div class="card bg-white px-3 px-md-5">
-                                                        <div class="card-body py-1">
-                                                            <p class="mb-0 text-center">R.U.C. 100007456065</p>
-                                                            <p class="mb-0 text-center"><b>BOLETA DE VENTA</b></p>
-                                                            <p class="mb-0 text-center">002 - 0000504</p>
-                                                        </div>
-                                                    </div>
-                                                </section>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row mt-3">
-                                         
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="formGroupExampleInput" for="user">Señor(es)</label>
-                                                    <input id="senior" name="senior" type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="formGroupExampleInput" for="password">Documento de identidad</label>
-                                                    <input id="documentoIdentidad" name="documentoIdentidad" type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="formGroupExampleInput" for="password">Dirección</label>
-                                                    <input id="direccion" name="direccion" type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label class="formGroupExampleInput" for="password">Fecha de emisión</label>
-                                                    <input id="fechaEmision" name="fechaEmision" type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                        <div class="row mt-3">
-                                            
-                                            <div class="col-xl-8 offset-xl-2">
-                                                
-                                                <div class="card bg-blue">
-                                                    <div class="card-body pb-2">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <h5 class="mb-3">Ingresar Producto</h5>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row pl-md-4">
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                  <label for="exampleFormControlSelect1">Seleccionar Producto</label>
-                                                                  <select class="form-control" id="exampleFormControlSelect1">
-                                                                    <option>Teclado</option>
-                                                                    <option>Monitor</option>
-                                                                  </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="formGroupExampleInput" for="password">Precio Unitario</label>
-                                                                    <input id="precio" name="precio" type="text" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="formGroupExampleInput" for="password">Cantidad</label>
-                                                                    <input id="cantidad" name="cantidad" type="text" class="form-control">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-2 d-flex align-items-center">
-                                                                <button class="btn btn-primary w-100 mt-3">Insertar</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                            
-                                        </div>
-                                        
-                                        <div class="row mt-3">
-                                            <div class="col-12">
-                                                
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered bg-white">
-                                                        <thead>
-                                                          <tr>
-                                                            <th scope="col">Acciones</th>
-                                                            <th scope="col">Cantidad</th>
-                                                            <th scope="col">Descripción</th>
-                                                            <th scope="col">Importe</th>
-                                                          </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td>
-                                                                <button class="btn btn-success">A</button>
-                                                                <button class="btn btn-danger">E</button>
-                                                            </td>
-                                                            <td>1</td>
-                                                            <td>Libro Auditoria Tributaria</td>
-                                                            <td class="text-right">250.00</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>
-                                                                <button class="btn btn-success">A</button>
-                                                                <button class="btn btn-danger">E</button>
-                                                            </td>
-                                                            <td>1</td>
-                                                            <td>Libro Manual del Contador</td>
-                                                            <td class="text-right">250.00</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td>
-                                                                <button class="btn btn-success">A</button>
-                                                                <button class="btn btn-danger">E</button>
-                                                            </td>
-                                                            <td>1</td>
-                                                            <td>Compendio Laboral 2021</td>
-                                                            <td class="text-right">300.00</td>
-                                                          </tr>
-                                                          <tr>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td class="text-right">Total S/.</td>
-                                                            <td class="text-right">800.00</td>
-                                                          </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-md-3 mt-2 mb-4">
-                                                <section>
-                                                    <p class="mb-0 text-center">R.U.C N 20403034591</p>
-                                                    <p class="mb-0 text-center">N de autorización de impresión</p>
-                                                    <p class="mb-0 text-center">1543628050</p>
-                                                    <p class="mb-0 text-center">Fit. 05-1-2021</p>
-                                                </section>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
+                    <form method="post" action="BoletaVentaControl">
+                        
+                        <div class="container-fluid">
+                            <div class="row mx-1">
+                                <div class="col-12 mt-3">
+                                    <h4>
+                                       <% String tipoAccion = boleVentPre.getTipoAccion(); %>
+                                       <%= tipoAccion %> Boleta de Venta 
+                                    </h4>
                                 </div>
-                                
-                            </div>
-                            
-                            <div class="col-12">  
-                                <div class="d-flex justify-content-end">
-                                    <button class="btn btn-primary my-4">Grabar Boleta</button>    
+
+                                <div class="col-12 mt-3">
+
+                                    <div class="card bg-yellow">
+                                        <div class="card-body py-3">
+
+                                            <div class="row">
+                                                <div class="col-md-8 d-flex justify-content-center">
+                                                    <section>
+                                                        <div class="d-flex">
+                                                            <h5 class="mb-0 text-center font-italic">Tienda de computo <h5><h5 class="mb-0 font-italic font-weight-bold">"TICK"</h5>
+                                                        </div>
+                                                        <p class="mb-0 text-center">De: Román Guzmán, Elta</p>
+                                                        <p class="mb-0 text-center">Av. San Antornio 680 - Lima</p>
+                                                        <p class="mb-0 text-center">Jr. Brasil 312 - Lima</p>
+                                                    </section>
+                                                </div>
+                                                <div class="col-md-4 d-flex align-items-center justify-content-end">
+                                                    <section>
+                                                        <div class="card bg-white px-3 px-md-5">
+                                                            <div class="card-body py-1">
+                                                                <p class="mb-0 text-center">R.U.C. 100007456065</p>
+                                                                <p class="mb-0 text-center"><b>BOLETA DE VENTA</b></p>
+                                                                <p class="mb-0 text-center">002 - 0000504</p>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            </div>
+
+                                            <!-- ################     FORMULARIO BOLETA DE VENTA   ################# -->
+                                            <% Object[] boleVentaForm = boleVentPre.getBoletaVenta(); %>
+                                            <input type="hidden" name="idUsuarioForm" value="<%= usuario[0] %>" />
+                                            <input type="hidden" name="idTipoUsuarioForm" value="<%= usuario[3] %>" />
+                                            
+                                            <input type="hidden" name="idBoletaVenta" value="<%= boleVentaForm[0] %>" />
+                                            
+
+                                            <div class="row mt-3">
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="formGroupExampleInput">Señor(a)</label>
+                                                        <input name="seniorForm" type="text" class="form-control" value="<%= boleVentaForm[1] %>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="formGroupExampleInput">Documento de identidad</label>
+                                                        <input name="documentoIdentidadForm" type="text" class="form-control" value="<%= boleVentaForm[2] %>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="formGroupExampleInput">Dirección</label>
+                                                        <input name="direccionForm" type="text" class="form-control" value="<%= boleVentaForm[3] %>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label class="formGroupExampleInput">Fecha de emisión</label>
+                                                        <input name="fechaEmisionForm" type="text" class="form-control" value="<%= boleVentaForm[4] %>">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row mt-3">
+
+                                                <div class="col-xl-8 offset-xl-2">
+
+                                                    <div class="card bg-blue">
+                                                        <div class="card-body pb-2">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <h5 class="mb-3">Ingresar Producto</h5>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row pl-md-4">
+                                                                <% Object[] productoPed = pediPre.getProductoPedido(); %>
+                                                                
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                      <label for="exampleFormControlSelect1">Seleccionar Producto</label>
+                                                                      <select class="form-control" id="selectProducto" name="IdProductoForm" >
+                                                                        <% for(int i=1;i<prodPre.getListaProducto().size();i++){ %>
+                                                                        <% Object[] producto = (Object[])prodPre.getListaProducto().get(i); %>
+                                                                        <option value="<%= producto[0] %>"> <%= producto[1] %> </option>
+                                                                        <% } %>
+                                                                      </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="formGroupExampleInput">Precio Unitario</label>
+                                                                        <input id="precio" name="precioForm" value="<%= productoPed[2] %>" type="text" disabled class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="formGroupExampleInput">Cantidad</label>
+                                                                        <input id="cantidad" name="CantidadForm" value="<%= productoPed[4] %>" type="text" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2 d-flex align-items-center">
+                                                                    <button class="btn btn-primary w-100 mt-3" name="acc" value="AgregarProducto">
+                                                                        Insertar
+                                                                    </button>
+                                                                    <button class="btn btn-primary w-100 mt-3 ml-3" name="acc" value="ActualizarProducto">
+                                                                        Actualizar
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="col-12">
+
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered bg-white">
+                                                            <thead>
+                                                              <tr>
+                                                                <th scope="col">Acciones</th>
+                                                                <th scope="col">Producto</th>
+                                                                <th scope="col">Precio Unitario</th>
+                                                                <th scope="col">Cantidad</th>
+                                                                <th scope="col">Importe</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                
+                                                                <% for(int i=0;i<pediPre.getListaPedido().size();i++){ %>
+                                                                <% Object[] productoPedido = (Object[])pediPre.getListaPedido().get(i); %>
+                                                                <% totalPedido = productoPedido[6].toString(); %>
+                                                                    <tr>
+                                                                      <td>
+                                                                        <form method="post" action="BoletaVentaControl">
+                                                                            <input type="hidden" name="IdProducto" value="<%= productoPedido[0] %>" />
+                                                                            <input type="hidden" name="Nombre" value="<%= productoPedido[1] %>" />
+                                                                            <input type="hidden" name="PrecioUnitario" value="<%= productoPedido[2] %>" />
+                                                                            <input type="hidden" name="Cantidad" value="<%= productoPedido[3] %>" />
+                                                                            <input type="hidden" name="Cant" value="<%= productoPedido[4] %>" />
+                                                                            <input type="hidden" name="Importe" value="<%= productoPedido[5] %>" />
+                                                                            <input type="hidden" name="Total" value="<%= productoPedido[6] %>" />
+                                                                            <input type="hidden" name="Indice" value="<%= i %>" />
+                                                                            
+                                                                            <button class="btn btn-success" type="submit" name="acc" value="ModificarProducto">
+                                                                                <i class="fas fa-pencil-alt fa-xs"></i>
+                                                                            </button>
+                                                                            <button class="btn btn-danger" type="submit" name="acc" value="EliminarProducto">
+                                                                                <i class="fas fa-trash fa-xs"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                      </td>
+                                                                      <td><%= productoPedido[1] %></td>
+                                                                      <td class="text-right">S/. <%= productoPedido[2] %></td>
+                                                                      <td class="text-right"><%= productoPedido[4] %></td>
+                                                                      <td class="text-right">S/. <%= productoPedido[5] %></td>
+                                                                    </tr>
+                                                                <% } %>
+                                                                
+                                                                <tr>
+                                                                  <td></td>
+                                                                  <td></td>
+                                                                  <td></td>
+                                                                  <td class="text-right">Total</td>
+                                                                  <td class="text-right">
+                                                                      S/. <%= totalPedido %>
+                                                                  </td>
+                                                                </tr>
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-3 mt-2 mb-4">
+                                                    <section>
+                                                        <p class="mb-0 text-center">R.U.C N 20403034591</p>
+                                                        <p class="mb-0 text-center">N de autorización de impresión</p>
+                                                        <p class="mb-0 text-center">1543628050</p>
+                                                        <p class="mb-0 text-center">Fit. 05-1-2021</p>
+                                                    </section>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12">  
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary mr-1 mt-4 mb-4" name="acc" value="GrabarBoletaVenta">
+                                           <i class="fas fa-save d-inline-block mr-2"></i>
+                                           <% String tipoAccion2 = boleVentPre.getTipoAccion(); %>
+                                           <%= tipoAccion2 %> Boleta
+                                        </button>   
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        
+                    </form>
 
                 </main>
 
@@ -381,7 +425,16 @@
 
         </main>
         
-        
+        <script type="text/javascript">
+            
+            //const selectProducto = document.getElementById('selectProducto');
+            //selectProducto.addEventListener('change', (event) => {
+            //    console.log(event);
+            //});
+            
+            
+        </script>
+                                        
         <script type="text/javascript" src="./assets/js/admin.js">
         </script>
     </body>

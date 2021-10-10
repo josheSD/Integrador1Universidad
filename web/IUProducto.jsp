@@ -143,12 +143,13 @@
                             <% for(int i=1;i<usuPre.getMenu().size();i++){ %>
                             <% Object[] menu = (Object[])usuPre.getMenu().get(i); %>
 
-                                <form method="POST" action="ProductoControl">
+                                <form method="POST" action="<%= menu[2] %>">
                                     <section class="modules" >
 
                                         <div class="modules__main">
+                                            <input type="hidden" name="IdTipoUsuario" value="<%= usuario[3] %>">
 
-                                            <button class="modules__button" type="submit"  name="acc" value="<%= menu[2] %>">
+                                            <button class="modules__button" type="submit"  name="acc" value="Lista">
                                                   <span>
                                                        <img src="<%= menu[3] %>" alt="modulo">
                                                   </span>
@@ -220,24 +221,28 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                            <form method="post" action="ProductoControl">
                                                 <% for(int i=1;i<prodPre.getListaProducto().size();i++){ %>
                                                 <% Object[] producto = (Object[])prodPre.getListaProducto().get(i); %>
                                                   <tr>
                                                     <td>
-                                                        <input type="hidden" name="IdProducto" value="<%= producto[0] %>" />
-                                                        <input type="hidden" name="Nombre" value="<%= producto[1] %>" />
-                                                        <input type="hidden" name="PrecioUnitario" value="<%= producto[2] %>" />
-                                                        <input type="hidden" name="Cantidad" value="<%= producto[3] %>" />
-                                                        <button class="btn btn-success" type="submit" name="acc" value="ModificarProducto">A</button>
-                                                        <button class="btn btn-danger" type="submit" name="acc" value="EliminarProducto">E</button>
+                                                        <form method="post" action="ProductoControl">
+                                                            <input type="hidden" name="IdProducto" value="<%= producto[0] %>" />
+                                                            <input type="hidden" name="Nombre" value="<%= producto[1] %>" />
+                                                            <input type="hidden" name="PrecioUnitario" value="<%= producto[2] %>" />
+                                                            <input type="hidden" name="Cantidad" value="<%= producto[3] %>" />
+                                                            <button class="btn btn-success" type="submit" name="acc" value="ModificaProducto">
+                                                                <i class="fas fa-pencil-alt fa-xs"></i>
+                                                            </button>
+                                                            <button class="btn btn-danger" type="submit" name="acc" value="EliminarProducto">
+                                                                <i class="fas fa-trash fa-xs"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                     <td><%= producto[1] %></td>
                                                     <td><%= producto[2] %></td>
                                                     <td><%= producto[3] %></td>
                                                   </tr>
                                                 <% } %>
-                                            </form>
                                         </tbody>
                                     </table>
                                 </div>

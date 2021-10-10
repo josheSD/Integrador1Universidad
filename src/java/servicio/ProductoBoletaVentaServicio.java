@@ -5,10 +5,15 @@
  */
 package servicio;
 
+import java.util.List;
+import negocio.ProductoBoletaVenta;
+
 /**
  *
  * @author Lance
  */
 public interface ProductoBoletaVentaServicio {
-    
+    public String grabar(ProductoBoletaVenta prodBoleVent);
+    public String eliminar(int idBoletaVenta);
+    public List buscar(int idBoletaVenta);
 }

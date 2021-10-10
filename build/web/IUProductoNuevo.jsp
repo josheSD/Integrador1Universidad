@@ -143,12 +143,13 @@
                             <% for(int i=1;i<usuPre.getMenu().size();i++){ %>
                             <% Object[] menu = (Object[])usuPre.getMenu().get(i); %>
 
-                                <form method="POST" action="ProductoControl">
+                                <form method="POST" action="<%= menu[2] %>">
                                     <section class="modules" >
 
                                         <div class="modules__main">
+                                            <input type="hidden" name="IdTipoUsuario" value="<%= usuario[3] %>">
 
-                                            <button class="modules__button" type="submit"  name="acc" value="<%= menu[2] %>">
+                                            <button class="modules__button" type="submit"  name="acc" value="Lista">
                                                   <span>
                                                        <img src="<%= menu[3] %>" alt="modulo">
                                                   </span>
@@ -187,24 +188,26 @@
             <section class="l-main" id="main">
                 <main class="l-dashboard">
 
-                    <div class="container-fluid">
-                        <div class="row mx-1">
-                            <div class="col-12 mt-3">
-                                <h4>
-                                   <% String tipoAccion = prodPre.getTipoAccion(); %>
-                                   <%= tipoAccion %> Producto 
-                                </h4>
-                            </div>
-                            <div class="col-md-8 mt-3">
-                                <div class="table-responsive">
-                                    <div class="card bg-blue">
-                                        <div class="card-body">
-                                            
-                                            <form method="post" id="formProducto" action="ProductoControl">
+                    <form method="post" action="ProductoControl">
+                        
+                        <div class="container-fluid">
+
+                            <div class="row mx-1">
+                                <div class="col-12 mt-3">
+                                    <h4>
+                                       <% String tipoAccion = prodPre.getTipoAccion(); %>
+                                       <%= tipoAccion %> Producto 
+                                    </h4>
+                                </div>
+                                <div class="col-md-8 mt-3">
+                                    <div class="table-responsive">
+                                        <div class="card bg-blue">
+                                            <div class="card-body">
+
                                                 <% Object[]producto = prodPre.getProducto(); %>
-                                                
-                                                <input id="producto" name="idProducto" type="hidden" value="<%= producto[0] %>" class="form-control">
-                                                    
+
+                                                <input name="idProducto" type="hidden" value="<%= producto[0] %>" class="form-control">
+
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
@@ -225,24 +228,25 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
-                                            </form>
-                                            
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-8 d-flex justify-content-end mt-3">
-                                <button type="submit" class="btn btn-primary mr-2" name="acc" value="GrabarProducto" form="formProducto">
-                                   <% String tipoAccion2 = prodPre.getTipoAccion(); %>
-                                   <%= tipoAccion2 %> Producto
-                                </button>
+
+                            <div class="row">
+                                <div class="col-md-8 d-flex justify-content-end mt-3">
+                                    <button type="submit" class="btn btn-primary mr-2" name="acc" value="GrabarProducto">
+                                       <i class="fas fa-save d-inline-block mr-2"></i>
+                                       <% String tipoAccion2 = prodPre.getTipoAccion(); %>
+                                       <%= tipoAccion2 %> Producto
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                                
+                    </form>
 
                 </main>
 

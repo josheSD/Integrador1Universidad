@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/University/Integrador/Integrador1Universidad/web/IUProducto.jsp</file>
-            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/servicio/ProductoServicioImp.java</file>
-            <file>file:/D:/University/Integrador/Integrador1Universidad/web/IULogin.jsp</file>
-            <file>file:/D:/University/Integrador/Integrador1Universidad/web/IUAdmin.jsp</file>
-            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/persistencia/ProductoDaoImp.java</file>
-            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/persistencia/ProductoDao.java</file>
-            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/servicio/ProductoServicio.java</file>
-            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/negocio/Producto.java</file>
-            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/vista/ProductoControl.java</file>
+            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/vista/BoletaVentaControl.java</file>
+            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/persistencia/ProductoBoletaVentaDaoImp.java</file>
+            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/vista/BoletaVentaPresentador.java</file>
+            <file>file:/D:/University/Integrador/Integrador1Universidad/web/IUBoletaDeVentaNuevo.jsp</file>
+            <file>file:/D:/University/Integrador/Integrador1Universidad/src/java/persistencia/ProductoBoletaVentaDao.java</file>
         </group>
     </open-files>
 </project-private>

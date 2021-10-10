@@ -11,16 +11,27 @@ package negocio;
  */
 public class Producto {
     
+    int idProducto;
     String nombre;
     Double precioUnitario;
     int cantidad;
-
+    
+    public Producto(){}
+    
     public Producto(String nombre, Double precioUnitario, int cantidad) {
         this.nombre = nombre;
         this.precioUnitario = precioUnitario;
         this.cantidad = cantidad;
     }
 
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+    
     public String getNombre() {
         return nombre;
     }

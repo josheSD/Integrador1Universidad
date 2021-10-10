@@ -10,12 +10,11 @@ import negocio.Producto;
 
 /**
  *
- * @author Lance
+ * @author Jose
  */
-public interface ProductoDao {
-    public String grabar(Producto prod);
-    public String actualizar(Producto prod,int idProducto);
-    public String eliminar(int idProducto);
-    public List lista();
-    public Producto buscar(int idProducto);
+public interface PedidoDao {
+    public List vaciarCesta();
+    public List agregarProducto(Producto prod,int cant);
+    public List quitarProducto(int IdProducto);
+    public List actualizarProducto(Producto prod,int cant,int indice);
 }

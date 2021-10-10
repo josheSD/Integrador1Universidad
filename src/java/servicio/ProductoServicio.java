@@ -17,4 +17,5 @@ public interface ProductoServicio {
     public String actualizar(Producto prod,int idProducto);
     public String eliminar(int idProducto);
     public List lista();
+    public Producto buscar(int idProducto);
 }
