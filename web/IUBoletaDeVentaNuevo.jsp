@@ -286,13 +286,15 @@
                                                             <div class="row pl-md-4">
                                                                 <% Object[] productoPed = pediPre.getProductoPedido(); %>
                                                                 
+                                                                <input id="productoFormActualizar" type="hidden" class="form-control" data-idproductoform="<%= productoPed[0] %>">
+                                                                
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
-                                                                      <label for="exampleFormControlSelect1">Seleccionar Producto</label>
+                                                                      <label>Seleccionar Producto</label>
                                                                       <select class="form-control" id="selectProducto" name="IdProductoForm" >
                                                                         <% for(int i=1;i<prodPre.getListaProducto().size();i++){ %>
                                                                         <% Object[] producto = (Object[])prodPre.getListaProducto().get(i); %>
-                                                                        <option value="<%= producto[0] %>"> <%= producto[1] %> </option>
+                                                                        <option value="<%= producto[0] %>" data-idproducto="<%= producto[0] %>" data-preciounitario="<%= producto[2] %>" data-product="<%= producto[1] %>" > <%= producto[1] %> </option>
                                                                         <% } %>
                                                                       </select>
                                                                     </div>
@@ -356,7 +358,7 @@
                                                                             <input type="hidden" name="Total" value="<%= productoPedido[6] %>" />
                                                                             <input type="hidden" name="Indice" value="<%= i %>" />
                                                                             
-                                                                            <button class="btn btn-success" type="submit" name="acc" value="ModificarProducto">
+                                                                            <button class="btn btn-success" id="modificarProducto" type="submit" name="acc" value="ModificarProducto">
                                                                                 <i class="fas fa-pencil-alt fa-xs"></i>
                                                                             </button>
                                                                             <button class="btn btn-danger" type="submit" name="acc" value="EliminarProducto">
@@ -424,19 +426,9 @@
             <!-- END SIDEBAR -->
 
         </main>
-        
-        <script type="text/javascript">
-            
-            //const selectProducto = document.getElementById('selectProducto');
-            //selectProducto.addEventListener('change', (event) => {
-            //    console.log(event);
-            //});
-            
-            
-        </script>
                                         
-        <script type="text/javascript" src="./assets/js/admin.js">
-        </script>
+        <script type="text/javascript" src="./assets/js/admin.js"></script>
+        <script type="text/javascript" src="./assets/js/boletaventa.js"></script>
     </body>
 </html>
 

@@ -432,16 +432,10 @@ public class BoletaVentaControl extends HttpServlet {
             // Formulario
             int CantidadForm = Integer.parseInt(request.getParameter("CantidadForm"));
             int IdProductoForm = Integer.parseInt(request.getParameter("IdProductoForm"));
-            //Producto productoDB = prodSer.buscar(IdProductoForm);
+            Producto productoDB = prodSer.buscar(IdProductoForm);
             
-            
-            Producto producto = new Producto();
-                     producto.setIdProducto(IdProducto);
-                     producto.setNombre(Nombre);
-                     producto.setPrecioUnitario(PrecioUnitario);
-                     producto.setCantidad(Cantidad);
                      
-            pediPre.setListaPedido(pediSer.actualizarProducto(producto, CantidadForm, Indice));
+            pediPre.setListaPedido(pediSer.actualizarProducto(productoDB, CantidadForm, Indice));
             
             
             Object[] productoPed = {"","","","","","","",""};
