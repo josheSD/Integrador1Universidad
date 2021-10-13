@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sistema de Boleta de Venta Electrónica - Tick</title>
+        <title>Boleta de Venta | Sistema de Boleta de Venta Electrónica - Tick</title>
         <style>@import"./assets/css/styles.css";</style>
         <style>@import"./assets/css/components/admin.css"</style>
         <link rel="icon" type="image/x-icon" href="./assets/img/tick.png">

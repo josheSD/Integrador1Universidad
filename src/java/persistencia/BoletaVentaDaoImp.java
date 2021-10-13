@@ -37,12 +37,7 @@ public class BoletaVentaDaoImp implements BoletaVentaDao{
     @Override
     public List lista(int idTipoUsuario) {
         // 1 VENDEDOR      2 CAJERO 
-        String sql;
-        if(idTipoUsuario == 1){
-            sql = "SELECT * FROM boletaventa WHERE Estado = 1";
-        }else{
-            sql = "SELECT * FROM boletaventa WHERE Estado = 1 OR Estado = 2";
-        }
+        String sql = "SELECT * FROM boletaventa WHERE Estado = 1 OR Estado = 2";
         return Operacion.listar(sql);
     }
 

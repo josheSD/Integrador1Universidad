@@ -381,7 +381,7 @@ public class BoletaVentaControl extends HttpServlet {
             pediPre.setListaPedido(pediSer.agregarProducto(productoDB, CantidadForm));
             
             // Boleta de Venta
-            int idBoletaVenta = Integer.parseInt(request.getParameter("idBoletaVenta"));
+            String idBoletaVenta = request.getParameter("idBoletaVenta");
             String seniorForm = request.getParameter("seniorForm");
             int documentoIdentidadForm = Integer.parseInt(request.getParameter("documentoIdentidadForm"));
             String direccionForm = request.getParameter("direccionForm");

@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sistema de Boleta de Venta Electrónica - Tick</title>
+        <title>Login | Sistema de Boleta de Venta Electrónica - Tick</title>
         <style>@import"./assets/css/styles.css";</style>
         <style>@import"./assets/css/components/login.css";</style>
         <link rel="icon" type="image/x-icon" href="./assets/img/tick.png">

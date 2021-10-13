@@ -3,11 +3,12 @@
 <%@page import="vista.BoletaVentaPresentador"%>
 <%@page import="vista.UsuarioPresentador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Sistema de Boleta de Venta Electrónica - Tick</title>
+        <title> Boleta de Venta | Sistema de Boleta de Venta Electrónica - Tick</title>
         <style>@import"./assets/css/styles.css";</style>
         <style>@import"./assets/css/components/admin.css"</style>
         <link rel="icon" type="image/x-icon" href="./assets/img/tick.png">
@@ -195,9 +196,11 @@
                                    Lista de Boleta de Venta 
                                 </h4>
                                 <form method="post" action="BoletaVentaControl">
-                                    <button class="btn btn-primary my-3" type="submit" name="acc" value="AgregarBoletaVenta">
-                                        Agregar
-                                    </button>
+                                    <% if(usuario[3].toString().equals("1")){ %>
+                                        <button class="btn btn-primary my-3" type="submit" name="acc" value="AgregarBoletaVenta">
+                                            Agregar
+                                        </button>
+                                    <% } %>
                                 </form>
                             </div>
                             <div class="col-12 mt-3">
@@ -230,15 +233,32 @@
                                                         
                                                         <input type="hidden" name="IdTipoUsuarioTable" value="<%= usuario[3] %>">
                                                         
-                                                        <button class="btn btn-success" type="submit" name="acc" value="ModificaBoletaVenta">
-                                                            <i class="fas fa-pencil-alt fa-xs"></i>
-                                                        </button>
-                                                        <button class="btn btn-danger" type="submit" name="acc" value="EliminarBoletaVenta">
-                                                            <i class="fas fa-trash fa-xs"></i>
-                                                        </button>
-                                                        <button class="btn btn-primary" type="submit" name="acc" value="AprobarBoletaVenta">
-                                                            <i class="fas fa-check-circle"></i>
-                                                        </button>
+                                                        <!-- MODIFICAR Y ELIMINAR BOLETA DE VENTA PARA USUARIO VENDEDOR -->
+                                                        <% if(usuario[3].toString().equals("1") && boletaVenta[5].toString().equals("1")){ %>
+                                                            <button class="btn btn-success" type="submit" name="acc" value="ModificaBoletaVenta" data-toggle="tooltip" title="Actualizar Boleta de Venta">
+                                                                <i class="fas fa-pencil-alt fa-xs"></i>
+                                                            </button>
+                                                            <button class="btn btn-danger" type="submit" name="acc" value="EliminarBoletaVenta" data-toggle="tooltip" title="Eliminar Boleta de Venta">
+                                                                <i class="fas fa-trash fa-xs"></i>
+                                                            </button>
+                                                        <% } %>
+                                                        
+                                                        <!-- APROBAR BOLETA DE VENTA PARA USUARIO CAJERO -->
+                                                        <% if(usuario[3].toString().equals("2") && boletaVenta[5].toString().equals("1")){ %>
+                                                            <button class="btn btn-primary" type="submit" name="acc" value="AprobarBoletaVenta" data-toggle="tooltip" title="Aprobar Boleta de Venta">
+                                                                <i class="fas fa-check-circle"></i>
+                                                            </button>
+                                                        <% }%>
+                                                        
+                                                        <!-- GENERAR REPORTE Y VER BOLETA -->
+                                                        <% if(boletaVenta[5].toString().equals("2")){ %>
+                                                            <button class="btn btn-primary" type="submit" name="acc" value="VerBoletaVenta" data-toggle="tooltip" title="Ver Boleta de Venta">
+                                                                <i class="fas fa-eye fa-xs"></i>
+                                                            </button>
+                                                            <button class="btn btn-primary" type="submit" name="acc" value="ReporteBoletaVenta" data-toggle="tooltip" title="Generar Reporte">
+                                                                <i class="fas fa-file-pdf"></i>
+                                                            </button>
+                                                        <% }%>
                                                       </form>
                                                   </td>
                                                   <td><%= boletaVenta[1] %></td>
