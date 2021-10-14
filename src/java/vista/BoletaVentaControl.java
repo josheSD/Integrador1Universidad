@@ -73,6 +73,11 @@ public class BoletaVentaControl extends HttpServlet {
         }
         
         // CRUD 
+        
+        if(acc.equals("VerBoletaVenta")){
+            this.verBoletaVenta(request,response);
+        }
+        
         if(acc.equals("GrabarBoletaVenta")){
             if(IdBoletaVenta == null || IdBoletaVenta.isEmpty()){
                 this.grabarBoletaVenta(request, response);
@@ -261,6 +266,63 @@ public class BoletaVentaControl extends HttpServlet {
         
     }
     
+    private void verBoletaVenta(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        try{
+            
+            // Tabla información
+            String IdBoletaVenta = request.getParameter("IdBoletaVenta");
+            String Senior = request.getParameter("Senior");
+            String DocumentoIdentidad = request.getParameter("DocumentoIdentidad");
+            String Direccion = request.getParameter("Direccion");
+            String FechaEmision = request.getParameter("FechaEmision");
+            String Estado = request.getParameter("Estado");
+            String Total = request.getParameter("Total");
+            String IdUsuario = request.getParameter("IdUsuario");
+            
+            Object[] boletaVentaActualizar = {"","","","","","","",""};
+                     boletaVentaActualizar[0] = IdBoletaVenta;
+                     boletaVentaActualizar[1] = Senior;
+                     boletaVentaActualizar[2] = DocumentoIdentidad;
+                     boletaVentaActualizar[3] = Direccion;
+                     boletaVentaActualizar[4] = FechaEmision;
+                     boletaVentaActualizar[5] = Estado;
+                     boletaVentaActualizar[6] = Total;
+                     boletaVentaActualizar[7] = IdUsuario;
+                     
+            boleVentPre.setMsg("");
+            boleVentPre.setTipoAccion("Ver");
+            boleVentPre.setBoletaVenta(boletaVentaActualizar);
+            
+            prodPre.setListaProducto(prodSer.lista());        
+            pediPre.setListaPedido(pediSer.vaciarCesta());
+
+            List boletaVentaDB = prodBoleVentSer.buscar(Integer.parseInt(IdBoletaVenta));
+
+            for(int i=1;i<boletaVentaDB.size();i++){
+                Object[] boleVent = (Object[])boletaVentaDB.get(i);
+                int CantidadForm = Integer.parseInt(boleVent[4].toString());
+                Producto productoDB = new Producto();
+                         productoDB.setIdProducto(Integer.parseInt(boleVent[0].toString()));
+                         productoDB.setNombre(boleVent[1].toString());
+                         productoDB.setPrecioUnitario(Double.parseDouble(boleVent[2].toString()));
+                         productoDB.setCantidad(Integer.parseInt(boleVent[3].toString()));
+                pediPre.setListaPedido(pediSer.agregarProducto(productoDB,CantidadForm));
+            }
+
+            request.getSession().setAttribute("prodPre", prodPre);
+            request.getSession().setAttribute("boleVentPre", boleVentPre);
+            request.getSession().setAttribute("pediPre", pediPre);
+            
+            response.sendRedirect("IUBoletaDeVentaNuevo.jsp");
+            
+        }catch(Exception ex){
+            System.out.println(ex);
+        }
+        
+    }
+        
     private void grabarBoletaVenta(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         

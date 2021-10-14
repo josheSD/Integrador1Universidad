@@ -34,7 +34,7 @@ public class ProductoDaoImp implements ProductoDao{
 
     @Override
     public List lista() {
-        String sql = "SELECT * FROM producto;";
+        String sql = "SELECT * FROM producto ORDER BY IdProducto DESC";
         return Operacion.listar(sql);
     }
 

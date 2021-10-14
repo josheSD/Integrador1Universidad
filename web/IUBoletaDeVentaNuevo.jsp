@@ -272,60 +272,69 @@
 
                                             </div>
 
-                                            <div class="row mt-3">
+                                            <% if(!tipoAccion.equals("Ver")) { %>        
+                                                <div class="row mt-3">
 
-                                                <div class="col-xl-8 offset-xl-2">
+                                                    <div class="col-xl-8 offset-xl-2">
 
-                                                    <div class="card bg-blue">
-                                                        <div class="card-body pb-2">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <h5 class="mb-3">Ingresar Producto</h5>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row pl-md-4">
-                                                                <% Object[] productoPed = pediPre.getProductoPedido(); %>
-                                                                
-                                                                <input id="productoFormActualizar" type="hidden" class="form-control" data-idproductoform="<%= productoPed[0] %>">
-                                                                
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                      <label>Seleccionar Producto</label>
-                                                                      <select class="form-control" id="selectProducto" name="IdProductoForm" >
-                                                                        <% for(int i=1;i<prodPre.getListaProducto().size();i++){ %>
-                                                                        <% Object[] producto = (Object[])prodPre.getListaProducto().get(i); %>
-                                                                        <option value="<%= producto[0] %>" data-idproducto="<%= producto[0] %>" data-preciounitario="<%= producto[2] %>" data-product="<%= producto[1] %>" > <%= producto[1] %> </option>
+                                                        <div class="card bg-blue">
+                                                            <% Object[] productoPed = pediPre.getProductoPedido(); %>
+                                                            <div class="card-body pb-2">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <% if(productoPed[0].toString().isEmpty()){ %>
+                                                                                <h5 class="mb-3">Ingresar Producto</h5>
+                                                                        <% }else{ %>
+                                                                                <h5 class="mb-3">Actualizar Producto</h5>
                                                                         <% } %>
-                                                                      </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label class="formGroupExampleInput">Precio Unitario</label>
-                                                                        <input id="precio" name="precioForm" value="<%= productoPed[2] %>" type="text" disabled class="form-control">
+                                                                <div class="row pl-md-4">
+
+                                                                    <input id="productoFormActualizar" type="hidden" class="form-control" data-idproductoform="<%= productoPed[0] %>">
+
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                          <label>Seleccionar Producto</label>
+                                                                          <select class="form-control" id="selectProducto" name="IdProductoForm" >
+                                                                            <% for(int i=1;i<prodPre.getListaProducto().size();i++){ %>
+                                                                            <% Object[] producto = (Object[])prodPre.getListaProducto().get(i); %>
+                                                                            <option value="<%= producto[0] %>" data-idproducto="<%= producto[0] %>" data-preciounitario="<%= producto[2] %>" data-product="<%= producto[1] %>" > <%= producto[1] %> </option>
+                                                                            <% } %>
+                                                                          </select>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label class="formGroupExampleInput">Cantidad</label>
-                                                                        <input id="cantidad" name="CantidadForm" value="<%= productoPed[4] %>" type="text" class="form-control">
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label class="formGroupExampleInput">Precio Unitario</label>
+                                                                            <input id="precio" name="precioForm" value="<%= productoPed[2] %>" type="text" disabled class="form-control">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-2 d-flex align-items-center">
-                                                                    <button class="btn btn-primary w-100 mt-3" name="acc" value="AgregarProducto">
-                                                                        Insertar
-                                                                    </button>
-                                                                    <button class="btn btn-primary w-100 mt-3 ml-3" name="acc" value="ActualizarProducto">
-                                                                        Actualizar
-                                                                    </button>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label class="formGroupExampleInput">Cantidad</label>
+                                                                            <input id="cantidad" name="CantidadForm" value="<%= productoPed[4] %>" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2 d-flex align-items-center">
+                                                                        <% if(productoPed[0].toString().isEmpty()){ %>
+                                                                            <button class="btn btn-primary w-100 mt-3" name="acc" value="AgregarProducto">
+                                                                                Insertar
+                                                                            </button>
+                                                                        <% }else{ %>
+                                                                            <button class="btn btn-primary w-100 mt-3 ml-3" name="acc" value="ActualizarProducto">
+                                                                                Actualizar
+                                                                            </button>
+                                                                        <% } %>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                     </div>
 
                                                 </div>
-
-                                            </div>
+                                            <% } %>      
 
                                             <div class="row mt-3">
                                                 <div class="col-12">
@@ -334,7 +343,9 @@
                                                         <table class="table table-bordered bg-white">
                                                             <thead>
                                                               <tr>
-                                                                <th scope="col">Acciones</th>
+                                                                <% if(!tipoAccion.equals("Ver")) { %>
+                                                                    <th scope="col">Acciones</th>
+                                                                <% } %>
                                                                 <th scope="col">Producto</th>
                                                                 <th scope="col">Precio Unitario</th>
                                                                 <th scope="col">Cantidad</th>
@@ -347,25 +358,27 @@
                                                                 <% Object[] productoPedido = (Object[])pediPre.getListaPedido().get(i); %>
                                                                 <% totalPedido = productoPedido[6].toString(); %>
                                                                     <tr>
-                                                                      <td>
-                                                                        <form method="post" action="BoletaVentaControl">
-                                                                            <input type="hidden" name="IdProducto" value="<%= productoPedido[0] %>" />
-                                                                            <input type="hidden" name="Nombre" value="<%= productoPedido[1] %>" />
-                                                                            <input type="hidden" name="PrecioUnitario" value="<%= productoPedido[2] %>" />
-                                                                            <input type="hidden" name="Cantidad" value="<%= productoPedido[3] %>" />
-                                                                            <input type="hidden" name="Cant" value="<%= productoPedido[4] %>" />
-                                                                            <input type="hidden" name="Importe" value="<%= productoPedido[5] %>" />
-                                                                            <input type="hidden" name="Total" value="<%= productoPedido[6] %>" />
-                                                                            <input type="hidden" name="Indice" value="<%= i %>" />
-                                                                            
-                                                                            <button class="btn btn-success" id="modificarProducto" type="submit" name="acc" value="ModificarProducto">
-                                                                                <i class="fas fa-pencil-alt fa-xs"></i>
-                                                                            </button>
-                                                                            <button class="btn btn-danger" type="submit" name="acc" value="EliminarProducto">
-                                                                                <i class="fas fa-trash fa-xs"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                      </td>
+                                                                      <% if(!tipoAccion.equals("Ver")) { %>  
+                                                                        <td>
+                                                                              <form method="post" action="BoletaVentaControl">
+                                                                                  <input type="hidden" name="IdProducto" value="<%= productoPedido[0] %>" />
+                                                                                  <input type="hidden" name="Nombre" value="<%= productoPedido[1] %>" />
+                                                                                  <input type="hidden" name="PrecioUnitario" value="<%= productoPedido[2] %>" />
+                                                                                  <input type="hidden" name="Cantidad" value="<%= productoPedido[3] %>" />
+                                                                                  <input type="hidden" name="Cant" value="<%= productoPedido[4] %>" />
+                                                                                  <input type="hidden" name="Importe" value="<%= productoPedido[5] %>" />
+                                                                                  <input type="hidden" name="Total" value="<%= productoPedido[6] %>" />
+                                                                                  <input type="hidden" name="Indice" value="<%= i %>" />
+
+                                                                                  <button class="btn btn-success" id="modificarProducto" type="submit" name="acc" value="ModificarProducto">
+                                                                                      <i class="fas fa-pencil-alt fa-xs"></i>
+                                                                                  </button>
+                                                                                  <button class="btn btn-danger" type="submit" name="acc" value="EliminarProducto">
+                                                                                      <i class="fas fa-trash fa-xs"></i>
+                                                                                  </button>
+                                                                              </form>
+                                                                        </td>
+                                                                      <% } %>
                                                                       <td><%= productoPedido[1] %></td>
                                                                       <td class="text-right">S/. <%= productoPedido[2] %></td>
                                                                       <td class="text-right"><%= productoPedido[4] %></td>
@@ -374,7 +387,9 @@
                                                                 <% } %>
                                                                 
                                                                 <tr>
-                                                                  <td></td>
+                                                                  <% if(!tipoAccion.equals("Ver")) { %>
+                                                                    <td></td>
+                                                                  <% } %>
                                                                   <td></td>
                                                                   <td></td>
                                                                   <td class="text-right">Total</td>
@@ -405,16 +420,18 @@
                                     </div>
 
                                 </div>
-
-                                <div class="col-12">  
-                                    <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary mr-1 mt-4 mb-4" name="acc" value="GrabarBoletaVenta">
-                                           <i class="fas fa-save d-inline-block mr-2"></i>
-                                           <% String tipoAccion2 = boleVentPre.getTipoAccion(); %>
-                                           <%= tipoAccion2 %> Boleta
-                                        </button>   
+                                                                  
+                                <% if(!tipoAccion.equals("Ver")) { %>
+                                    <div class="col-12">  
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary mr-1 mt-4 mb-4" name="acc" value="GrabarBoletaVenta">
+                                               <i class="fas fa-save d-inline-block mr-2"></i>
+                                               <% String tipoAccion2 = boleVentPre.getTipoAccion(); %>
+                                               <%= tipoAccion2 %> Boleta
+                                            </button>   
+                                        </div>
                                     </div>
-                                </div>
+                                <% } %>
                             </div>
                         </div>
                         
