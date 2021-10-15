@@ -16,7 +16,7 @@ import persistencia.ProductoBoletaVentaDaoImp;
  */
 public class ProductoBoletaVentaServicioImp implements ProductoBoletaVentaServicio{
 
-    ProductoBoletaVentaDao prodBoleVentDao;
+    private ProductoBoletaVentaDao prodBoleVentDao;
     
     public ProductoBoletaVentaServicioImp(){
         this.prodBoleVentDao = new ProductoBoletaVentaDaoImp();

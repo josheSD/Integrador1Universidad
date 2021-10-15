@@ -248,15 +248,15 @@
                                                             <button class="btn btn-primary" type="submit" name="acc" value="AprobarBoletaVenta" data-toggle="tooltip" title="Aprobar Boleta de Venta">
                                                                 <i class="fas fa-check-circle"></i>
                                                             </button>
-                                                        <% }%>
-                                                        
-                                                        <!-- GENERAR REPORTE Y VER BOLETA -->
-                                                        <% if(boletaVenta[5].toString().equals("2")){ %>
                                                             <button class="btn btn-primary" type="submit" name="acc" value="VerBoletaVenta" data-toggle="tooltip" title="Ver Boleta de Venta">
                                                                 <i class="fas fa-eye fa-xs"></i>
                                                             </button>
-                                                            <button class="btn btn-primary" type="submit" name="acc" value="ReporteBoletaVenta" data-toggle="tooltip" title="Generar Reporte">
-                                                                <i class="fas fa-file-pdf"></i>
+                                                        <% }%>
+                                                        
+                                                        <!-- VER BOLETA -->
+                                                        <% if(boletaVenta[5].toString().equals("2")){ %>
+                                                            <button class="btn btn-primary" type="submit" name="acc" value="VerBoletaVenta" data-toggle="tooltip" title="Ver Boleta de Venta">
+                                                                <i class="fas fa-eye fa-xs"></i>
                                                             </button>
                                                         <% }%>
                                                       </form>
